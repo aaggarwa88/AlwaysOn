@@ -1,0 +1,17 @@
+module.exports = {
+  "movies": {
+    "endpoint": "cards",
+    "programType": "movie",
+    "label": "What's On",
+    "max_show": 6,
+    "imageKey": "primaryImageUrl",
+    "filters" :[
+      {"label": "Today", "value": "onNow", "default": true},
+      {"label": "Tomorrow", "value": "nextDay"},
+      {"label": "In the Future", "value": "next7days"}
+  ]},
+  "tv":{
+    "endpoint": "cards",
+    "programType": "tv"
+  }
+}

@@ -1,0 +1,29 @@
+.mediaItem {
+  position: relative;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+
+  .mediaItemPhoto {
+    background: #fff;
+    position: absolute;
+    top: 0;
+    height: 95%;
+    width: 100%;
+
+    img {
+      width: 100%;
+      -webkit-transition: all 0.2s ease;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .mediaItemMeta {
+    border-bottom: 2px solid #aaa;
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    height: 5%;
+    width: 100%;
+  }
+}

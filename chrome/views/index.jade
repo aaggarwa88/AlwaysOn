@@ -1,0 +1,7 @@
+doctype html
+
+html
+  head
+    script(src=env == 'prod' ? '/js/newtab.bundle.js' : 'https://localhost:3000/js/newtab.bundle.js')
+  body
+    #reactApp test

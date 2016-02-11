@@ -1,0 +1,13 @@
+.header {
+  height: 60px;
+  padding: 0 20px;
+  font-size: 30px;
+}
+
+
+.header #headerContent {
+    max-width: 1180px;
+    min-width: 320px;
+    margin: 0 auto;
+    position: relative;
+}

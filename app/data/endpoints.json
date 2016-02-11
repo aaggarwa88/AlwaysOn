@@ -1,0 +1,12 @@
+module.exports = {
+  "rootUrl": "http://skeletor.cloudster.tv",
+  "endpoints": {
+    "cards": {
+      "url": "/alwayson/cards",
+      "params": {
+        "starttime": ["onNow", "next30min", "nextHour","nextDay", "next7days", "next14days"],
+        "programType": ["tv", "movie", "sports", "adult"]
+      }
+    }
+  }
+}

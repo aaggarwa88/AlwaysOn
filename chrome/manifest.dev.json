@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Always On by DirectTV",
+  "author": "DirectTV",
+  "version": "0.0.1",
+
+  "description": "Always On",
+
+  "homepage_url": "http://www.directv.com/",
+
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+
+  "permissions": [ "contextMenus", "management", "tabs", "storage", "https://github.com/*", "https://dtvimages.hs.llnwd.net/*", "http://skeletor.cloudster.tv/*"],
+  "content_security_policy": "default-src 'self'; script-src 'self' https://localhost:3000 'unsafe-eval'; connect-src https://localhost:3000 wss://localhost:3000 http://skeletor.cloudster.tv; style-src * 'unsafe-inline' 'self' blob:; img-src https://dtvimages.hs.llnwd.net 'self' data:;"
+}
