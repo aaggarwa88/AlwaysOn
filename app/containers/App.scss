@@ -1,6 +1,13 @@
+@import "../globals/colors.scss";
+
 body {
-  background-color: #f1f1f1;
+  background-color: $grey;
   margin-left: 50px;
   padding: 20px 63px 20px 65px;
   -webkit-transition: margin-left .2s;
+}
+
+* {
+  -webkit-padding-start: 0px;
+  letter-spacing: 1px;
 }

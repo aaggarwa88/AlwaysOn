@@ -7,8 +7,8 @@ module.exports = {
     "imageKey": "primaryImageUrl",
     "filters" :[
       {"label": "Today", "value": "onNow", "default": true},
-      {"label": "Tomorrow", "value": "nextDay"},
-      {"label": "In the Future", "value": "next7days"}
+      {"label": "Tomorrow", "value": "nextHour"},
+      {"label": "In the Future", "value": "nextDay"}
   ]},
   "tv":{
     "endpoint": "cards",

@@ -7,7 +7,7 @@ export default class Header extends Component {
     return (
       <header className={style.header} >
           <div id="headerContent">
-            <h1>DirectTV</h1>
+            <img src="/img/logo.png" />
           </div>
       </header>
     );

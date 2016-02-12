@@ -12,6 +12,6 @@
     "newtab": "index.html"
   },
 
-  "permissions": [ "contextMenus", "management", "tabs", "storage", "https://github.com/*", "https://dtvimages.hs.llnwd.net/*", "http://skeletor.cloudster.tv/*"],
-  "content_security_policy": "default-src 'self'; script-src 'self' https://localhost:3000 'unsafe-eval'; connect-src https://localhost:3000 wss://localhost:3000 http://skeletor.cloudster.tv; style-src * 'unsafe-inline' 'self' blob:; img-src https://dtvimages.hs.llnwd.net 'self' data:;"
+  "permissions": [ "contextMenus", "management", "tabs", "storage", "https://github.com/*", "https://dtvimages.hs.llnwd.net/*", "http://skeletor.cloudster.tv/*", "http://fonts.gstatic.com/*"],
+  "content_security_policy": "default-src 'self'; script-src 'self' https://localhost:3000 'unsafe-eval'; connect-src https://localhost:3000 wss://localhost:3000 http://skeletor.cloudster.tv http://fonts.gstatic.com; style-src * 'unsafe-inline' 'self' blob:; font-src http://fonts.gstatic.com 'self' data:; img-src https://dtvimages.hs.llnwd.net 'self' data:;"
 }

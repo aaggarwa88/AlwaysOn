@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Carousel from '../components/Carousel'
+import Carousel from './Carousel'
 
 import configs from './carouselConfig.json'
 

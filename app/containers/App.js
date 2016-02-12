@@ -1,10 +1,10 @@
-import style from './App.scss';
+import React, { PropTypes, Component } from 'react';
 
-import React, { PropTypes, Component } from 'react'
-import Header from '../components/Header';
+import Header from './Header';
 import MainLayout from './MainLayout';
 
-import API from '../data/API';
+import style from './App.scss';
+
 
 export default class App extends Component{
   constructor () {
@@ -16,14 +16,10 @@ export default class App extends Component{
   render () {
     return (
       <div>
+        <Header />
         <MainLayout items={this.state.movieData.content}></MainLayout>
       </div>
     )
   }
-  componentDidMount() {
-    var movieParams =  {"programType": "movies", "starttime": "next30min"};
-    API('cards', movieParams, (data) => {
-      this.setState({"movieData": data});
-    });
-  }
+
 }
