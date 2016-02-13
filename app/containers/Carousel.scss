@@ -7,7 +7,7 @@
     font-weight: bold;
     margin-bottom: 20px;
   }
-  margin-bottom: 20px;
+  margin: 20px 0 ;
   overflow: auto;
 }
 
@@ -17,21 +17,20 @@
   clear: both;
 
   li {
-    float: left;
-    margin: 10px 20px 10px 0;
-    background-color: #fff;
     display: block;
     float: left;
-    margin: 10px 20px 10px 0;
     width: 250px;
     height: 400px;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+  }
+
+  li:not(:last-child) {
+    margin-right: 42px;
   }
 
   @media only screen and (max-width: $max) and (min-width: $XL) {
       li {
-          width: calc((100vw - 430px) / 6);
+          width: calc((100vw - 506px) / 6);
+          height:calc((1.5 * ((100vw - 506px) / 6)) + 60px)  // 1.5 * x = y
       }
 
       li:nth-child(n+7) {

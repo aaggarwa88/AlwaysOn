@@ -1,13 +1,50 @@
-.header {
-  height: 60px;
-  padding: 0 20px;
-  font-size: 30px;
-}
+@import "../globals/all.scss";
+
+header {
 
 
-.header #headerContent {
-    max-width: 1180px;
-    min-width: 320px;
-    margin: 0 auto;
+  #headerContent {
+    height: 160px;
     position: relative;
+  }
+
+  .logoContainer {
+    @include vertical-align();
+  }
+
+  .userContainer {
+    @include vertical-align();
+
+    .user {
+      font-weight: bold;
+      font-size: 14px;
+      color: $dark-grey;
+      float: right;
+    }
+  }
+
+  .dateContainer {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+
+    .clock {
+        @include exact-center-align(absolute);
+        top: 45%;
+    }
+
+    .todaysDate {
+      margin:10px 0 20px;
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+      font-weight: bold;
+      line-height: .9;
+      span {
+        color: $green;
+        text-transform: uppercase;
+      }
+    }
+  }
+
 }

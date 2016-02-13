@@ -2,7 +2,10 @@ import React, { PropTypes } from 'react'
 
 import API from '../data/API';
 import Filters from '../components/Carousel/Filters';
+import Shuffle from '../components/Carousel/Shuffle';
 import MediaItem from '../components/MediaItem';
+
+import _ from 'underscore';
 
 import style from './Carousel.scss';
 
@@ -20,14 +23,18 @@ const Carousel = React.createClass({
       <div>
       <div className="CarouselHeader">
         <div className="label">{this.props.config.label}</div>
-        <Filters onSelectFilter={this.onSelectFilter} filters={this.props.config.filters} />
+        <div>
+          <Filters onSelectFilter={this.onSelectFilter} filters={this.props.config.filters} />
+          <Shuffle onShuffle={this.onShuffle} />
+        </div>
       </div>
       <div>
         <ul className="CarouselList">
         {
-          this.state.items.map(function(item) {
+          this.state.items.map(function(item, idx) {
+            if(idx < 6)
             return (
-              <li key={item.tmsId}>
+              <li key={idx}>
                 <MediaItem item={item}/>
               </li>
             )
@@ -43,9 +50,12 @@ const Carousel = React.createClass({
   onSelectFilter (filterValue) {
     var movieParams =  {"programType": "movies", "starttime": filterValue};
     API('cards', movieParams, (data) => {
-      console.log('test');
       this.setState({"items": data.content});
     });
+  },
+
+  onShuffle () {
+    this.setState({"items": _.shuffle(this.state.items)});
   }
 
 });
