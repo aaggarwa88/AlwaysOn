@@ -1,8 +1,53 @@
+@import '../globals/all.scss';
+
 .mediaItem {
 
   .mediaItemPhoto {
     img {
       width: 100%;
+    }
+    .mediaItemMeta {
+      display: table;
+      width: 100%;
+      min-height: 60px;
+
+      .channelImage {
+        float: left;
+        position: relative;
+        min-width: 20px;
+        img {
+          height: 70%;
+          width: auto;
+          max-height: 60px;
+          padding: 13px 0 0;
+        }
+        width: 50%;
+        height: auto;
+      }
+      .channelInfo {
+        width: 50%;
+        float: left;
+        text-align: left;
+        padding: 10px 0 0;
+
+        &.noLogo {
+          margin-left: 100px;
+        }
+        
+        .time {
+          color: $green;
+          font-weight: bold;
+          font-family: $font-opensans;
+        }
+        .label {
+          text-transform: uppercase;
+          font-size: .2em;
+          font-weight: bold;
+          color: $dark-grey;
+          letter-spacing: 0;
+          font-family: $font-opensans;
+        }
+      }
     }
   }
 
@@ -20,7 +65,7 @@
   }
 
   .ReactFlipCard__Flipper {
-    transition: .2s !important;
+    transition: .05s !important;
   }
 
   .ReactFlipCard,

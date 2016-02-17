@@ -12,6 +12,16 @@ module.exports = {
   ]},
   "tv":{
     "endpoint": "cards",
-    "programType": "tv"
+    "programType": "tv",
+    "label": "What's Playing On Your Channels",
+    "max_show": 20,
+    "filters" :[
+      {"label": "Starz", "value": "onNow", "default": true},
+      {"label": "Cartoon Network", "value": "onNow"},
+      {"label": "HBO", "value": "onNow"},
+      {"label": "IFC", "value": "onNow"},
+      {"label": "CBS", "value": "onNow"},
+      {"label": "Showtime", "value": "onNow"}
+    ]
   }
 }

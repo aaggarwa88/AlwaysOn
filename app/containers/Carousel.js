@@ -14,43 +14,53 @@ const Carousel = React.createClass({
 
   getInitialState: function() {
     return {
-      items: []
+      items: [],
+      loading: true,
+      err: false
     };
   },
 
   render () {
     return (
       <div>
-      <div className="CarouselHeader">
-        <div className="label">{this.props.config.label}</div>
+        <div className="CarouselHeader">
+          <div className="label">{this.props.config.label}</div>
+          <div>
+            <Filters onSelectFilter={this.onSelectFilter} filters={this.props.config.filters} />
+            { this.state.loading ? <img className="loading" src="/img/loader.gif" />: null }
+            <Shuffle onShuffle={this.onShuffle} />
+          </div>
+        </div>
         <div>
-          <Filters onSelectFilter={this.onSelectFilter} filters={this.props.config.filters} />
-          <Shuffle onShuffle={this.onShuffle} />
+          <ul className="CarouselList">
+            {
+              this.state.items.map(function(item, idx) {
+                if(idx < this.props.config.max_show)
+                return (
+                  <li key={idx}>
+                    <MediaItem item={item}/>
+                  </li>
+                )
+              }, this)
+            }
+          </ul>
         </div>
       </div>
-      <div>
-        <ul className="CarouselList">
-        {
-          this.state.items.map(function(item, idx) {
-            if(idx < 6)
-            return (
-              <li key={idx}>
-                <MediaItem item={item}/>
-              </li>
-            )
-          })
-        }
-        </ul>
-      </div>
-    </div>
 
     )
   },
 
   onSelectFilter (filterValue) {
-    var movieParams =  {"programType": "movies", "starttime": filterValue};
-    API('cards', movieParams, (data) => {
-      this.setState({"items": data.content});
+    var movieParams =  {"programType": this.props.config.programType, "starttime": filterValue};
+    this.setState({"loading": true});
+
+    API('cards', movieParams, (err, data) => {
+      if(err) {
+        this.setState({"err": true, "loading": false});
+      } else {
+        this.setState({"items": data.content, "loading": false});
+      }
+
     });
   },
 

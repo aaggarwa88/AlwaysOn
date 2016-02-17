@@ -8,10 +8,10 @@ const Layout = React.createClass({
   render () {
 
     return (
-      //Movies Carousel
-      <Carousel config={configs.movies}></Carousel>
-      //Tv Carousel
-      //Trailer Carousel
+      <div>
+        <Carousel config={configs.movies}></Carousel>
+        
+      </div>
     )
   }
 })

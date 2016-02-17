@@ -21,10 +21,11 @@ export default function (endpoint, params, callback)  {
         dataType: 'json',
         data: postData,
         success: function(data) {
-          callback(data);
+          callback(null, data);
         },
         error: function(xhr, status, err) {
           console.error("Error calling API");
+          callback(err, null);
         },
       });
     }

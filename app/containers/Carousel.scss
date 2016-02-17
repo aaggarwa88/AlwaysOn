@@ -9,12 +9,19 @@
   }
   margin: 20px 0 ;
   overflow: auto;
+
+  .loading {
+    height: 24px;
+    display: inline-block;
+
+  }
 }
 
 
 .CarouselList {
   list-style-type: none;
   clear: both;
+  display: table;
 
   li {
     display: block;
@@ -23,19 +30,37 @@
     height: 400px;
   }
 
-  li:not(:last-child) {
-    margin-right: 42px;
+  @media only screen and (max-width: $max) and (min-width: $XL) {
+    li {
+      width: calc((100vw - 506px) / 6);
+      height:calc((1.5 * ((100vw - 506px) / 6)) + 60px)  // 1.5 * x = y
+    }
+
+    li:nth-child(n+7) {
+      display: none
+    }
   }
 
-  @media only screen and (max-width: $max) and (min-width: $XL) {
-      li {
-          width: calc((100vw - 506px) / 6);
-          height:calc((1.5 * ((100vw - 506px) / 6)) + 60px)  // 1.5 * x = y
-      }
+  @media only screen and (max-width: $XL - 1 ) {
+    li {
+      width: calc((100vw - 416px) / 5);
+      height:calc((1.5 * ((100vw - 416px) / 5)) + 60px);  // 1.5 * x = y
+      margin-right: 30px !important;
+    }
 
-      li:nth-child(n+7) {
-          display: none
-      }
+    li:nth-child(n+5) {
+      margin-right: 0 !important;
+    }
+
+
+    li:nth-child(n+6) {
+      display: none
+    }
+  }
+
+
+  li:not(:last-child) {
+    margin-right: 42px;
   }
 
 }
