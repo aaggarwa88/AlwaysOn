@@ -1,20 +1,34 @@
 @import "../../globals/all.scss";
 
-.filters {
-  font-family: $font-playfair;
-  font-size: 24px;
-  letter-spacing: 2px;
-  font-weight: 700;
-  div {
-    float: left;
-    margin-right: 30px;
-    text-transform: uppercase;
-    color: $dark-blue;
-    opacity: .3;
-    cursor: pointer;
 
-    &.active, &:hover {
-      opacity: 1;
-    }
+.filtersContainer {
+    text-align: center;
+    position: relative;
+}
+
+.filters {
+  font-family: $font-titillium;
+  font-size: 24px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 0px;
+  list-style:none;
+  overflow: hidden;
+  margin: 0;
+
+  li {
+     float: left;
+
+     
   }
+
+    .loading {
+      width: 20px;
+      min-height: 1px;
+      img {
+        height: 24px;
+        display: inline-block;
+      }
+    }
+
 }

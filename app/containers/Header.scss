@@ -4,47 +4,67 @@ header {
 
 
   #headerContent {
-    height: 160px;
+    height: 120px;
     position: relative;
+    padding-top: 25px;
   }
 
-  .logoContainer {
-    @include vertical-align();
+  .leftContainer {
+    min-height: 1px;
   }
 
-  .userContainer {
+
+  .rightContainer {
     @include vertical-align();
 
-    .user {
-      font-weight: bold;
-      font-size: 14px;
-      color: $dark-grey;
+    .menu {
       float: right;
-    }
-  }
 
-  .dateContainer {
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-
-    .clock {
-        @include exact-center-align(absolute);
-        top: 45%;
-    }
-
-    .todaysDate {
-      margin:10px 0 20px;
-      bottom: 0;
-      position: absolute;
-      width: 100%;
-      font-weight: bold;
-      line-height: .9;
-      span {
-        color: $green;
-        text-transform: uppercase;
+      img {
+        height: 25px;
       }
     }
   }
 
+  .centerContainer {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+
+    .logo {
+        @include exact-center-align(absolute);
+        top: 45%;
+        width: 50px;
+    }
+
+
+  }
+}
+.trailerName {
+  margin-bottom: 60px;
+}
+
+.fancy {
+  text-align: center;
+}
+.fancy div {
+  display: inline-block;
+  position: relative;
+}
+.fancy div:before,
+.fancy div:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid $light-grey;
+  top: 0;
+  width: 400px;
+}
+.fancy div:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.fancy div:after {
+  left: 100%;
+  margin-left: 15px;
 }

@@ -1,0 +1,10 @@
+.menuUnderline {
+  height: 2px;
+  position: absolute;
+  bottom: 0px;
+  background-color:  #337ab7;
+  left: 300px;
+  width: 20px;
+  transform: scaleX(1);
+  transition: 1s all ease;
+}

@@ -1,0 +1,27 @@
+@import "../../globals/all.scss";
+
+.ribbonLabel {
+  text-transform: uppercase;
+  background-color: $light-blue;
+  margin-top: 5px;
+  color: white;
+  padding: 5px 10px;
+  display: inline-block;
+  position: relative;
+
+  &:before,
+  &:after {
+      content  : " ";
+      display  : block;
+      width    : 0;
+      height   : 0;
+      position : absolute;
+      bottom   : -10px;
+      left     : 0;
+    position      : absolute;
+      border-top    : 10px solid darken($light-blue,15%);
+      border-left   : 10px solid transparent;
+    background    : transparent;
+  }
+
+}

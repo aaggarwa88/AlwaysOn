@@ -1,12 +1,18 @@
 @import "../globals/colors.scss";
 
 body {
-  background-color: $white;
-  padding: 0px 140px 20px;
+  background-color: $dark-grey;
   -webkit-transition: margin-left .2s;
+  margin: 0;
+  padding: 0 100px;
 }
 
 * {
   -webkit-padding-start: 0px;
-  letter-spacing: 1px;
+  outline: none;
+}
+
+.frontApp {
+  position: relative;
+  width: 100%;
 }

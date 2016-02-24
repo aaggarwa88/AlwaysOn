@@ -1,20 +1,8 @@
 @import "../globals/all.scss";
 
 .CarouselHeader {
-  .label {
-    text-transform: uppercase;
-    color: $dark-grey;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
   margin: 20px 0 ;
   overflow: auto;
-
-  .loading {
-    height: 24px;
-    display: inline-block;
-
-  }
 }
 
 
@@ -23,17 +11,21 @@
   clear: both;
   display: table;
 
+  //start list a little left
+  margin-left: 12px;
+
   li {
     display: block;
     float: left;
     width: 250px;
     height: 400px;
+    position: relative;
   }
 
   @media only screen and (max-width: $max) and (min-width: $XL) {
     li {
-      width: calc((100vw - 506px) / 6);
-      height:calc((1.5 * ((100vw - 506px) / 6)) + 60px)  // 1.5 * x = y
+      width: calc((100vw - 426px) / 6);
+      height:calc((1.5 * ((100vw - 426px) / 6)) + 60px)  // 1.5 * x = y
     }
 
     li:nth-child(n+7) {
@@ -43,8 +35,8 @@
 
   @media only screen and (max-width: $XL - 1 ) {
     li {
-      width: calc((100vw - 416px) / 5);
-      height:calc((1.5 * ((100vw - 416px) / 5)) + 60px);  // 1.5 * x = y
+      width: calc((100vw - 336px) / 5);
+      height:calc((1.5 * ((100vw - 336px) / 5)) + 60px);  // 1.5 * x = y
       margin-right: 30px !important;
     }
 

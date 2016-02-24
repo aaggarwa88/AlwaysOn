@@ -1,24 +1,81 @@
+@import "../globals/all.scss";
 
 .videoContainer {
   position: absolute;
-    top: -9px;
-    width: 100%;
-    left: 0px;
-    z-index: -10;
+  width: 100%;
+  left: 0px;
+  z-index: -10;
+  transition: all .6s ease;
+  height: 100%;
 
-  .videoJs {
+  #bgVideo {
     position: relative;
     left: 0px;
     top: 0px;
     opacity: .6;
     width: 100%;
+    transition: all 1s ease;
   }
+}
+
+.videoControls {
+
+  transition: all 1s ease;
+  display: none;
+  position: absolute;
+  top: 40%;
+  @include horizontal-align(absolute);
+  color: white;
+  cursor: pointer;
+  i {
+    font-size: 40px;
+    &:not(:last-child) {
+      margin-right: 42px;
+    }
+    text-shadow: 1px 1px rgba(0, 0, 0, .7);
+  }
+  z-index: 1000;
 }
 
 .videoMask {
   position: absolute;
   width: 100%;
-  top: -9px;
   left: 0px;
-  z-index: -9;
+  height: 100%;
+  display: block;
 }
+
+.videoRollOver {
+  position:absolute;
+  height: 140px;
+  width: 50%;
+  @include horizontal-align(absolute);
+  z-index: 1000;
+  top: 0;
+
+}
+
+
+.isFullScreen {
+  .videoContainer {
+    opacity: 1;
+    margin: 2%;
+    width: 96%;
+    height: 92%;
+    overflow: hidden;
+    -webkit-filter: contrast(1);
+  }
+
+  .videoControls {
+    display: block;
+  }
+
+    #bgVideo {
+      opacity: 1;
+      box-shadow: 2px 1px 4px rgba(0,0,0,.7);
+    }
+
+    .videoMask {
+      display: none;
+    }
+  }

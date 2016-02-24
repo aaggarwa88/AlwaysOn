@@ -2,7 +2,7 @@ module.exports = {
   "movies": {
     "endpoint": "cards",
     "programType": "movie",
-    "label": "What's On",
+    "label": "Discover What's On",
     "max_show": 6,
     "imageKey": "primaryImageUrl",
     "filters" :[

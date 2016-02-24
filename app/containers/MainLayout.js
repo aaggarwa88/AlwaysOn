@@ -9,8 +9,8 @@ const Layout = React.createClass({
 
     return (
       <div>
-        <Carousel config={configs.movies}></Carousel>
-        
+        <Carousel showTrailer={this.props.showTrailer} config={configs.movies}></Carousel>
+
       </div>
     )
   }

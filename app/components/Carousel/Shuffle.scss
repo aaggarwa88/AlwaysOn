@@ -2,10 +2,26 @@
 
 .shuffler {
   cursor: pointer;
+  text-transform: uppercase;
+  color: $green;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 39px;
+
+  padding-right: 35px;
+  background: url("/img/shuffle.png");
+  background-repeat: no-repeat;
+  background-position: right 5px;
+
+  &.button {
+    border: 1px solid $green;
+    border-radius: 10px;
+
+  }
 
   div {
     font-weight: bold;
-    color: $green;
+
     font-size: 13px;
     display: inline-block;
     text-transform: capitalize;
