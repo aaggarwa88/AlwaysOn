@@ -3,6 +3,8 @@ import React, { PropTypes, Component } from 'react';
 import Header from './Header';
 import MainLayout from './MainLayout';
 import BackgroundVideo from '../components/BackgroundVideo';
+import HoverOverHeader from '../components/HoverOverHeader';
+
 import style from './App.scss';
 
 const App = React.createClass({
@@ -18,11 +20,14 @@ const App = React.createClass({
   render () {
     return (
       <div>
-        <BackgroundVideo showBgVideo={this.state.showBgVideo}
-          trailerMode={this.state.trailerMode}
-          videoUrl={this.state.videoUrl}
-          fullScreenCallback={this.showFullScreen}
+        <div className="background">
+          <BackgroundVideo isActive={this.state.showBgVideo}
+            trailerMode={this.state.trailerMode}
+            videoUrl={this.state.videoUrl}
+            fullScreenCallback={this.showFullScreen}
           />
+          <HoverOverHeader isActive={this.state.showBgVideo} onHoverCallback={this.showFullScreen} />
+        </div>
 
         <div className="frontApp">
           <Header />
@@ -33,6 +38,9 @@ const App = React.createClass({
   },
 
   showFullScreen (boolVal) {
+    this.setState({
+      showBgVideo: boolVal
+    })
     if(boolVal) {
       TweenMax.to(".frontApp", .3, {opacity: 0, top: "50px"});
       TweenMax.set(".frontApp", {display: "none"}, .3);

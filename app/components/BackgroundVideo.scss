@@ -23,7 +23,7 @@
   transition: all 1s ease;
   display: none;
   position: absolute;
-  top: 40%;
+  top: 10%;
   @include horizontal-align(absolute);
   color: white;
   cursor: pointer;
@@ -43,16 +43,6 @@
   left: 0px;
   height: 100%;
   display: block;
-}
-
-.videoRollOver {
-  position:absolute;
-  height: 140px;
-  width: 50%;
-  @include horizontal-align(absolute);
-  z-index: 1000;
-  top: 0;
-
 }
 
 

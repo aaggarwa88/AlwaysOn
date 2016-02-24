@@ -6,7 +6,6 @@ import { default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay
 
 import $ from 'jquery';
 
-var hoverTimer = null;
 
 const BackgroundVideo = React.createClass({
 
@@ -19,7 +18,7 @@ const BackgroundVideo = React.createClass({
   render () {
 
     return (
-      <div className={cx({'isFullScreen': this.props.showBgVideo})}>
+      <div className={cx({'isFullScreen': this.props.isActive})}>
         <div className="videoContainer">
 
           <Video  ref="video" id="bgVideo" className={cx('videoJs')} controls autoPlay loop muted
@@ -32,15 +31,12 @@ const BackgroundVideo = React.createClass({
         </div>
 
         <img className="videoMask" src="/img/video_mask.png" />
-        <div onMouseEnter={this.mouseHover} onMouseLeave={this.mouseHover} className="videoRollOver">
 
           <div className="videoControls">
             <i onClick={this.skipBackwardsClick}  className="ion-skip-backward"></i>
             {!this.state.muted ? <i onClick={this.soundControlClick}  className="ion-volume-medium"></i> : <i  onClick={this.soundControlClick}  className="ion-volume-mute"></i>}
             <i onClick={this.fullScreenClick} className="ion-arrow-expand" />
           </div>
-
-        </div>
       </div>
     )
   },
@@ -52,8 +48,9 @@ const BackgroundVideo = React.createClass({
       this.refs.video.unmute();
     }
 
-    if(this.props.showBgVideo != prevProps.showBgVideo &&
-      !this.props.showBgVideo &&
+    //determines business logic when to mute on transition changes.
+    if(this.props.isActive != prevProps.isActive &&
+      !this.props.isActive &&
       !this.state.showFullScreen) {
       this.setState({muted: true});
     }
