@@ -3,9 +3,7 @@ import webpack from 'webpack';
 
 export default {
   entry: {
-    todoapp: [path.join(__dirname, '../chrome/extension/todoapp')],
-    background: [path.join(__dirname, '../chrome/extension/background')],
-    inject: [path.join(__dirname, '../chrome/extension/inject')]
+    newtab: [path.join(__dirname, '../chrome/extension/newtab')],
   },
   output: {
     path: path.join(__dirname, '../build/js'),
@@ -42,6 +40,9 @@ export default {
         'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
         'postcss'
       ]
+    }, {
+      test: /\.scss$/,
+      loaders: ["style", "css", "resolve-url", "sass"]
     }]
   }
 };

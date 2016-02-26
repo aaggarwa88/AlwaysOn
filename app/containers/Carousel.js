@@ -32,10 +32,11 @@ const Carousel = React.createClass({
               <RibbonLabel text={this.props.config.label} />
             </Span>
             <Span  columns={8}>
+
                 <Filters loading={this.state.loading} onSelectFilter={this.onSelectFilter} filters={this.props.config.filters} />
             </Span>
             <Span columns={2} last>
-              <div>
+              <div className="right">
                 <Shuffle onShuffle={this.onShuffle} />
               </div>
             </Span>
@@ -69,7 +70,7 @@ const Carousel = React.createClass({
 
 
   onSelectFilter (filterValue) {
-    var movieParams =  {"programType": this.props.config.programType, "starttime": filterValue};
+    var movieParams =  {"programType": this.props.config.programType, "starttime": filterValue, "ppv": this.props.config.ppv};
     this.setState({"loading": true});
 
     API('cards', movieParams, (err, data) => {

@@ -5,7 +5,15 @@ module.exports = {
       "url": "/alwayson/cards",
       "params": {
         "starttime": ["onNow", "next30min", "nextHour","nextDay", "next7days", "next14days"],
-        "programType": ["tv", "movie", "sports", "adult"]
+        "programType": ["tv", "movie", "sports", "adult"],
+        "ppv": false
+      }
+    },
+    "login": {
+      "url": "/auth/login",
+      "params": {
+        "email": "",
+        "password": ""
       }
     }
   }

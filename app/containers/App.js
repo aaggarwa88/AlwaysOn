@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 
+import $ from 'jquery';
+
 import Header from './Header';
 import MainLayout from './MainLayout';
 import BackgroundVideo from '../components/BackgroundVideo';
@@ -7,40 +9,86 @@ import HoverOverHeader from '../components/HoverOverHeader';
 
 import style from './App.scss';
 
+const bgVideoApi = "https://sheetsu.com/apis/b68c8178"
+
 const App = React.createClass({
 
+  isBgTrailer: 0, //Boolean to determine if initial load bg video is
+  initVideoObj: {},
+
   getInitialState: function() {
+
+    this.isBgTrailer = Math.round(Math.random());
+    this.initVideoObj = {"hover": "FALSE"}
+
+    if(!this.isBgTrailer) {
+      //If not a BG trailer, than default to show clouds.
+      this.initVideoObj = {"video_url": "/videos/clouds.mp4", "hover": "FALSE"};
+    }
+
     return {
-      videoUrl: "/videos/clouds.mp4",
+      videoObj: this.initVideoObj,
       trailerMode: false,
-      showBgVideo: false,
+      isBgVideoActive: false,
     };
   },
 
+  loadBgVideos: function() {
+    $.ajax({
+     url: bgVideoApi,
+     dataType: 'json',
+     cache: true,
+     success: function(data) {
+       const randomSelect = Math.floor(Math.random() * (data.result.length));
+       this.initVideoObj = data.result[randomSelect];
+
+       this.setState({videoObj: this.initVideoObj});
+     }.bind(this),
+     error: function(xhr, status, err) {
+       console.error(this.props.url, status, err.toString());
+     }.bind(this)
+   });
+  },
+
+  componentDidMount() {
+    if(this.isBgTrailer) {
+      this.loadBgVideos();
+    }
+  },
+
   render () {
+
     return (
       <div>
         <div className="background">
-          <BackgroundVideo isActive={this.state.showBgVideo}
+          <BackgroundVideo isActive={this.state.isBgVideoActive}
             trailerMode={this.state.trailerMode}
-            videoUrl={this.state.videoUrl}
-            fullScreenCallback={this.showFullScreen}
+            exitTrailerMode={this.exitTrailerMode}
+            videoObj={this.state.videoObj}
+            fullScreenCallback={this.showBgVideo}
           />
-          <HoverOverHeader isActive={this.state.showBgVideo} onHoverCallback={this.showFullScreen} />
+          <HoverOverHeader isDisabled={this.state.videoObj.hover === "FALSE" || this.state.trailerMode} isActive={this.state.isBgVideoActive} onHoverCallback={this.showBgVideo} />
         </div>
 
         <div className="frontApp">
-          <Header />
+          <Header trailerDescription={this.state.videoObj.description} />
           <MainLayout showTrailer={this.showTrailer}></MainLayout>
         </div>
       </div>
     )
   },
 
-  showFullScreen (boolVal) {
+  showBgVideo (boolVal) {
+
     this.setState({
-      showBgVideo: boolVal
-    })
+      isBgVideoActive: boolVal
+    });
+
+    this.animateBgVideo(boolVal);
+
+  },
+
+  animateBgVideo (boolVal) {
     if(boolVal) {
       TweenMax.to(".frontApp", .3, {opacity: 0, top: "50px"});
       TweenMax.set(".frontApp", {display: "none"}, .3);
@@ -51,12 +99,25 @@ const App = React.createClass({
   },
 
   showTrailer (videoObj) {
+    videoObj.video_url = "/videos/clouds.mp4";
     this.setState({
-      trailerMode: true
+      trailerMode: true,
+      isBgVideoActive: true,
+      videoObj: videoObj,
     });
 
-    this.showFullScreen(true);
-  }
+    this.animateBgVideo(true);
+  },
+
+  exitTrailerMode() {
+    this.setState({
+      trailerMode: false,
+      isBgVideoActive: false,
+      videoObj: this.initVideoObj,
+    });
+
+    this.animateBgVideo(false);
+  },
 
 })
 

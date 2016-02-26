@@ -13,5 +13,5 @@
   },
 
   "permissions": [ "contextMenus", "management", "tabs", "storage", "https://github.com/*", "https://dtvimages.hs.llnwd.net/*", "http://skeletor.cloudster.tv/*", "http://fonts.gstatic.com/*"],
-  "content_security_policy": "default-src 'self'; script-src 'self' https://localhost:3000 'unsafe-eval'; connect-src https://localhost:3000 wss://localhost:3000 http://skeletor.cloudster.tv http://fonts.gstatic.com; style-src * 'unsafe-inline' 'self' blob:; font-src http://code.ionicframework.com http://fonts.gstatic.com 'self' data:; frame-src http://www.chrisjacobs.com 'src' data:; img-src https://dtvimages.hs.llnwd.net 'self' data:;"
+  "content_security_policy": "default-src 'self'; script-src 'self' https://localhost:3000 'unsafe-eval'; connect-src https://localhost:3000 wss://localhost:3000 http://skeletor.cloudster.tv https://sheetsu.com http://fonts.gstatic.com; style-src * 'unsafe-inline' 'self' blob:; font-src http://code.ionicframework.com http://fonts.gstatic.com 'self' data:; img-src https://dtvimages.hs.llnwd.net 'self' data:;"
 }

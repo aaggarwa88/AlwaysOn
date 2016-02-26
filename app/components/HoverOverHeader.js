@@ -15,21 +15,22 @@ const HoverOverHeader = React.createClass({
 
   //This determines to show the BG Video
   mouseHover() {
-    console.log(this.props.isActive)
-    //call back up to main app
-    clearTimeout(hoverTimer);
+    if(!this.props.isDisabled) {
+      //call back up to main app
+      clearTimeout(hoverTimer);
 
-    if (hoverTimer != null) {
-      window.clearTimeout(hoverTimer);
-      hoverTimer = null;
-    }
-    else {
-      hoverTimer = setTimeout(() => {
-        this.props.onHoverCallback(!this.props.isActive);
-
+      if (hoverTimer != null) {
+        window.clearTimeout(hoverTimer);
         hoverTimer = null;
+      }
+      else {
+        hoverTimer = setTimeout(() => {
+          this.props.onHoverCallback(!this.props.isActive);
 
-      }, 200);
+          hoverTimer = null;
+
+        }, 200);
+      }
     }
   }
 

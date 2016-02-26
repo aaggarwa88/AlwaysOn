@@ -9,89 +9,106 @@ import $ from 'jquery';
 
 const BackgroundVideo = React.createClass({
 
+
   getInitialState: function() {
     return {
       showFullScreen: false,
       muted: true
     };
   },
-  render () {
 
+  render () {
     return (
-      <div className={cx({'isFullScreen': this.props.isActive})}>
+      <div className={cx({'isActive': this.props.isActive})}>
         <div className="videoContainer">
 
           <Video  ref="video" id="bgVideo" className={cx('videoJs')} controls autoPlay loop muted
             poster="/">
-            <source src={this.props.videoUrl} type="video/mp4" />
+            <source src={this.props.videoObj.video_url} type="video/mp4" />
             <Overlay />
 
-          </Video>
 
-        </div>
+          <div className="color-white">
+            {
+              !this.props.trailerMode ?
+              null
+              :
+              <div>
+                <div className="trailerModeExit">
+                  <i onClick={this.props.exitTrailerMode}  className="ion-close-circled"></i>
+                </div>
+                <div className="trailerMeta">
+                  <div>You're watching a Trailer for</div>
+                  <h1>{this.props.videoObj.title} <i onClick={this.fullScreenClick} className="ion-arrow-expand" /></h1>
 
-        <img className="videoMask" src="/img/video_mask.png" />
+                </div>
+              </div>
 
-          <div className="videoControls">
-            <i onClick={this.skipBackwardsClick}  className="ion-skip-backward"></i>
-            {!this.state.muted ? <i onClick={this.soundControlClick}  className="ion-volume-medium"></i> : <i  onClick={this.soundControlClick}  className="ion-volume-mute"></i>}
-            <i onClick={this.fullScreenClick} className="ion-arrow-expand" />
+            }
           </div>
+          </Video>
+        </div>
+        <img className="videoMask" src="/img/video_mask.png" />
       </div>
     )
   },
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate (prevProps, prevState) {
     if(this.state.muted) {
       this.refs.video.mute();
     } else {
       this.refs.video.unmute();
     }
 
+    if(this.props.videoObj.video_url != prevProps.videoObj.video_url) {
+      this.refs.video.load();
+      this.refs.video.play();
+    }
+
     //determines business logic when to mute on transition changes.
     if(this.props.isActive != prevProps.isActive &&
       !this.props.isActive &&
       !this.state.showFullScreen) {
-      this.setState({muted: true});
-    }
+        this.setState({muted: true});
+      }
+    },
 
-  },
+    componentDidMount() {
 
-  componentDidMount() {
-
-    var _this = this;
-    //capture onExit of full screen video
-    $("#bgVideo").bind('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
+      var _this = this;
+      //capture onExit of full screen video
+      $("#bgVideo").bind('webkitlallsfchange mozfullscreenchange fullscreenchange', function(e) {
         var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
         if(!state) {
           _this.setState({muted: true, showFullScreen: false});
         }
-    });
+      });
+    },
 
-  },
 
-  soundControlClick() {
-    const newMuteState = !this.state.muted;
-    this.setState({muted: newMuteState});
-  },
 
-  skipBackwardsClick() {
-    this.setState({muted: false}, this.reloadVideo);
-  },
+    soundControlClick() {
+      const newMuteState = !this.state.muted;
+      this.setState({muted: newMuteState});
+    },
 
-  fullScreenClick() {
-    this.setState({muted: false, showFullScreen: true}, this.fullscreen);
-  },
+    skipBackwardsClick() {
+      this.setState({muted: false}, this.reloadVideo);
+    },
 
-  reloadVideo() {
-    // When changing a HTML5 video, you have to reload it.
-    this.refs.video.seek(0);
-  },
+    fullScreenClick() {
+      this.setState({muted: false, showFullScreen: true}, this.fullscreen);
+    },
 
-  fullscreen() {
-    this.refs.video.fullscreen();
-  }
+    reloadVideo() {
+      // When changing a HTML5 video, you have to reload it.
+      this.refs.video.seek(0);
+    },
 
-})
+    fullscreen() {
+      this.refs.video.fullscreen();
+    }
 
-export default BackgroundVideo
+  })
+
+  export default BackgroundVideo

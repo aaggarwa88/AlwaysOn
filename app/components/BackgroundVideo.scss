@@ -7,6 +7,7 @@
   z-index: -10;
   transition: all .6s ease;
   height: 100%;
+  overflow: hidden;
 
   #bgVideo {
     position: relative;
@@ -15,7 +16,12 @@
     opacity: .6;
     width: 100%;
     transition: all 1s ease;
+    background-color: white;
   }
+}
+
+.video--playing {
+  position: relative;
 }
 
 .videoControls {
@@ -34,7 +40,29 @@
     }
     text-shadow: 1px 1px rgba(0, 0, 0, .7);
   }
-  z-index: 1000;
+  z-index: 1001;
+}
+
+.trailerModeExit {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 30px;
+  z-index: 1001;
+  cursor: pointer;
+  display: none;
+}
+
+.trailerMeta {
+  bottom: 5%;
+  left: 5%;
+  position: absolute;
+  text-shadow: 1px 1px rgba(0, 0, 0, .7);
+
+  .ion-arrow-expand {
+    margin-left: 10px;
+    cursor: pointer;
+  }
 }
 
 .videoMask {
@@ -46,7 +74,7 @@
 }
 
 
-.isFullScreen {
+.isActive {
   .videoContainer {
     opacity: 1;
     margin: 2%;
@@ -56,16 +84,16 @@
     -webkit-filter: contrast(1);
   }
 
-  .videoControls {
-    display: block;
+  .videoControls, .trailerModeExit {
+    display: inherit;
   }
 
-    #bgVideo {
-      opacity: 1;
-      box-shadow: 2px 1px 4px rgba(0,0,0,.7);
-    }
-
-    .videoMask {
-      display: none;
-    }
+  #bgVideo {
+    opacity: 1;
+    box-shadow: 2px 1px 4px rgba(0,0,0,.7);
   }
+
+  .videoMask {
+    display: none;
+  }
+}

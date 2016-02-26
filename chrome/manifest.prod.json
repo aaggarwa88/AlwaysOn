@@ -1,23 +1,12 @@
 {
   "version": "0.0.0",
-  "name": "react-chrome-extension-example",
+  "name": "Always On by DirectTV",
   "manifest_version": 2,
   "description": "Example for react-chrome-extension-boilerplate",
-  "browser_action": {
-    "default_title": "React Chrome Extension Example",
-    "default_popup": "popup.html"
+  "homepage_url": "http://www.directv.com/",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
   },
-  "icons": {
-    "16": "img/icon-16.png",
-    "48": "img/icon-48.png",
-    "128": "img/icon-128.png"
-  },
-  "web_accessible_resources": [
-    "inject.html"
-  ],
-  "background": {
-    "page": "background.html"
-  },
-  "permissions": [ "contextMenus", "tabs", "storage", "https://github.com/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline';"
+  "permissions": [ "contextMenus", "management", "tabs", "storage", "https://github.com/*", "https://dtvimages.hs.llnwd.net/*", "http://skeletor.cloudster.tv/*", "http://fonts.gstatic.com/*"],
+  "content_security_policy": "default-src 'self'; script-src 'self' https://localhost:3000 'unsafe-eval'; connect-src https://localhost:3000 wss://localhost:3000 http://skeletor.cloudster.tv https://sheetsu.com http://fonts.gstatic.com; style-src * 'unsafe-inline' 'self' blob:; font-src http://code.ionicframework.com http://fonts.gstatic.com 'self' data:; frame-src http://www.chrisjacobs.com 'src' data:; img-src https://dtvimages.hs.llnwd.net 'self' data:;"
 }

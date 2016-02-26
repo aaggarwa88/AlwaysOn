@@ -5,6 +5,7 @@ module.exports = {
     "label": "Discover What's On",
     "max_show": 6,
     "imageKey": "primaryImageUrl",
+    "ppv": false,
     "filters" :[
       {"label": "Today", "value": "onNow", "default": true},
       {"label": "Tomorrow", "value": "nextHour"},

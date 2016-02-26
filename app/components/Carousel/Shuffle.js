@@ -5,7 +5,7 @@ import style from "./Shuffle.scss";
 const Shuffle = React.createClass({
   render () {
     return (
-      <div  onClick={this.onClick} className="shuffler right">
+      <div  onClick={this.onClick} className="shuffler">
         shuffle
       </div>
     )

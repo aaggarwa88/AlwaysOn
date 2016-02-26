@@ -20,9 +20,10 @@ export default class Header extends Component {
               <div className="menu"><img src="/img/icon-menu-grid.png" /></div>
             </Span>
           </Grid>
-          <div className="fancy trailerName">
-            <div>WATCH STAR WARS EPISODE VII TRAILER</div>
-          </div>
+          { this.props.trailerDescription ? 
+            <div className="fancy trailerName">
+              <div>{this.props.trailerDescription}</div>
+            </div> : null }
         </div>
       </header>
     );
