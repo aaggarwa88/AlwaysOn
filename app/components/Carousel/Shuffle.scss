@@ -5,7 +5,7 @@
   text-transform: uppercase;
   color: $green;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 39px;
 
   padding-right: 35px;
@@ -14,8 +14,9 @@
   background-position: right 5px;
 
   &.button {
-    border: 1px solid $green;
-    border-radius: 10px;
+    border: 3px solid rgba($green, .7);
+    padding: 0px 40px 0px 10px;
+    border-radius: 30px;
 
   }
 

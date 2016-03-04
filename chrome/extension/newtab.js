@@ -1,5 +1,5 @@
 import React from 'react'
-import App from '../../app/containers/App';
+import Root from '../../app/containers/Root';
 
 class AlwaysOn extends React.Component {
   constructor () {
@@ -7,7 +7,7 @@ class AlwaysOn extends React.Component {
   }
   render () {
     return <div>
-      <App />
+      <Root />
     </div>
   }
 }

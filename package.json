@@ -91,6 +91,7 @@
     "react-responsive": "^1.1.1",
     "react-responsive-grid": "^0.3.0",
     "react-shuffle": "^1.0.0",
+    "react-toolbox": "^0.14.1",
     "reactfire": "^0.6.0",
     "redux": "^3.2.1",
     "redux-thunk": "^1.0.3",

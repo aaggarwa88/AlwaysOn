@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const port = 3000;
 const entry = [
@@ -8,7 +9,7 @@ const entry = [
 ];
 
 export default {
-  devtool: 'eval-cheap-module-source-map',
+  devtool: 'inline-source-map',
   entry: {
     newtab: [path.join(__dirname, '../chrome/extension/newtab'), ...entry],
   },
@@ -19,6 +20,7 @@ export default {
     publicPath: `https://localhost:${port}/js/`
   },
   plugins: [
+    new ExtractTextPlugin('react-toolbox.css', { allChunks: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.IgnorePlugin(/[^/]+\/[\S]+.prod$/),
@@ -29,7 +31,7 @@ export default {
     })
   ],
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js', '.css', '.scss', '.json']
   },
   module: {
     loaders: [{
@@ -48,7 +50,11 @@ export default {
       ]
     }, {
       test: /\.scss$/,
-      loaders: ["style", "css", "resolve-url", "sass"]
+      loaders: [
+        "style",
+        "css",
+        "resolve-url",
+        "sass"]
     }]
   }
 };

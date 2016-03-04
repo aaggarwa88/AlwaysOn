@@ -18,7 +18,7 @@ const App = React.createClass({
 
   getInitialState: function() {
 
-    this.isBgTrailer = Math.round(Math.random());
+    //this.isBgTrailer = Math.round(Math.random());
     this.initVideoObj = {"hover": "FALSE"}
 
     if(!this.isBgTrailer) {
@@ -71,7 +71,7 @@ const App = React.createClass({
         </div>
 
         <div className="frontApp">
-          <Header trailerDescription={this.state.videoObj.description} />
+          <Header auth={this.props.auth} onLogout={this.props.onLogout} trailerDescription={this.state.videoObj.description} />
           <MainLayout showTrailer={this.showTrailer}></MainLayout>
         </div>
       </div>
@@ -80,12 +80,11 @@ const App = React.createClass({
 
   showBgVideo (boolVal) {
 
+    this.animateBgVideo(boolVal);
+
     this.setState({
       isBgVideoActive: boolVal
     });
-
-    this.animateBgVideo(boolVal);
-
   },
 
   animateBgVideo (boolVal) {
@@ -99,7 +98,9 @@ const App = React.createClass({
   },
 
   showTrailer (videoObj) {
-    videoObj.video_url = "/videos/clouds.mp4";
+
+    videoObj.video_url = this.findMovieTrailer(videoObj);
+
     this.setState({
       trailerMode: true,
       isBgVideoActive: true,
@@ -107,6 +108,14 @@ const App = React.createClass({
     });
 
     this.animateBgVideo(true);
+  },
+
+  findMovieTrailer(videoObj) {
+    console.log(videoObj)
+    if(videoObj.trailer) {
+      return videoObj.trailer[0].publishUrl;
+    }
+    return "/videos/clouds.mp4";
   },
 
   exitTrailerMode() {

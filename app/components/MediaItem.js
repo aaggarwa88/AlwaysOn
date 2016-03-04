@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import FlipCard from 'react-flipcard';
-import ReactFitText from 'react-fittext';
 
 import {Container, Breakpoint, Grid, Span} from 'react-responsive-grid'
 import moment from 'moment';
@@ -8,7 +7,7 @@ import cx from 'classnames';
 
 import style from './MediaItem.scss';
 
-let rootUrl = "https://dtvimages.hs.llnwd.net/e1/";
+const rootUrl = "https://dtvimages.hs.llnwd.net/e1/";
 
 const MediaItem = React.createClass({
 
@@ -29,7 +28,12 @@ const MediaItem = React.createClass({
           <div className="mediaItemFront">
             <div >
               <div className="mediaItemPhoto">
-                <img src={rootUrl + item.primaryImageUrl} />
+                <img src={meta.imageUrl} />
+                  {
+                    !meta.isPosterImage ?
+                      <div className="movieTitle">{item.title}</div> :
+                      null
+                  }
                 <div className="mediaItemMeta">
                   <div className="channelImage">
                     {meta.logoStyle ? <div style={meta.logoStyle} className="img"></div> : <div></div>}
@@ -46,32 +50,27 @@ const MediaItem = React.createClass({
             <div className="mediaItemBack">
               <div className="moreMeta">
                 <Grid columns={12}>
-                  <Breakpoint minWidth={150} widthMethod="componentWidth">
+                  <Breakpoint minWidth={100} widthMethod="componentWidth">
                     <Span className="smallPoster" columns={4}>
                       <img src={rootUrl + item.primaryImageUrl} />
                     </Span>
                     <Span className="categories" columns={7}>
-                      <div> {meta.categories} </div>
+                          <div onClick={this.dvr}>
+                            <div className="record">Rec</div>
+                          </div>
+                          { item.trailer ?
+                          <div onClick={this.props.showTrailer}>
+                            <div className="trailer">Watch Trailer</div>
+                          </div>
+                          : null }
                     </Span>
                   </Breakpoint>
                 </Grid>
 
                 <div className="title">{item.title}</div>
                 <div className="description">{item.description}</div>
-
+                <div> {meta.categories} </div>
               </div>
-              <Grid className="actions" columns={12}>
-                <Span className="" columns={6}>
-                  <img src="/img/dvr.png" />
-                  <div>DVR</div>
-                </Span>
-                <Span className="" columns={5}>
-                  <div onClick={this.props.showTrailer}>
-                    <img src="/img/watch_trailer.png" />
-                    <div>Watch Trailer</div>
-                  </div>
-                </Span>
-              </Grid>
 
             </div>
           </div>
@@ -80,8 +79,14 @@ const MediaItem = React.createClass({
     )
   },
 
+  //post a record button
+  dvr() {
+
+  },
+
   /*
-  start time, duration, logo, channel
+  All the business logic of a Media Poster item
+  start time, duration, logo, channel, poster image
   */
   getFormattedMeta (item) {
     var ret = {}, logo, i, dimensions,
@@ -117,6 +122,15 @@ const MediaItem = React.createClass({
     var tempTime = moment.duration(schedule.duration, 'minutes');
     ret.duration = tempTime.hours() + 'h ' + tempTime.minutes() + 'm';
 
+    //Poster image check
+    if(item.primaryImageUrl.indexOf("/default/") == -1) {
+      ret.imageUrl = rootUrl + item.primaryImageUrl;
+      ret.isPosterImage = true;
+    } else {
+      ret.imageUrl = '/img/empty-poster.png';
+      ret.isPosterImage = false;
+    }
+
     return ret;
   },
 
@@ -133,6 +147,7 @@ const MediaItem = React.createClass({
     }
   },
 
+  //delay action hover flipcard
   mouseHover() {
     clearTimeout(this.hoverTimer);
 
@@ -141,6 +156,7 @@ const MediaItem = React.createClass({
       this.hoverTimer = null;
     }
     else {
+      var time = !this.state.isFlipped ? 300 : 0;
       this.hoverTimer = setTimeout(() => {
         this.setState({
           isFlipped: !this.state.isFlipped
@@ -148,7 +164,7 @@ const MediaItem = React.createClass({
 
         this.hoverTimer = null;
 
-      }, 300);
+      }, time);
     }
   }
 })

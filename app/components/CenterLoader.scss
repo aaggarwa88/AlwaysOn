@@ -1,0 +1,8 @@
+@import '../globals/all.scss';
+
+.inersitial {
+  @include exact-center-align(absolute);
+  img {
+    width: 60px;
+  }
+}

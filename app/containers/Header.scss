@@ -2,9 +2,8 @@
 
 header {
 
-
   #headerContent {
-    height: 120px;
+    height: 15vh;
     position: relative;
     padding-top: 25px;
   }
@@ -34,7 +33,7 @@ header {
     .logo {
         @include exact-center-align(absolute);
         top: 45%;
-        width: 50px;
+        width: 200px;
     }
 
 

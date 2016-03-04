@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import style from './BackgroundVideo.scss';
+import BackgroundMask from './BackgroundMask';
 import cx from 'classnames';
 
 import { default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay } from 'react-html5video';
@@ -48,7 +49,7 @@ const BackgroundVideo = React.createClass({
           </div>
           </Video>
         </div>
-        <img className="videoMask" src="/img/video_mask.png" />
+        <BackgroundMask />
       </div>
     )
   },
@@ -64,6 +65,12 @@ const BackgroundVideo = React.createClass({
       this.refs.video.load();
       this.refs.video.play();
     }
+
+
+    if(this.props.trailerMode) {
+      this.refs.video.unmute();
+    }
+
 
     //determines business logic when to mute on transition changes.
     if(this.props.isActive != prevProps.isActive &&
@@ -87,6 +94,7 @@ const BackgroundVideo = React.createClass({
 
 
 
+    //Control actions
     soundControlClick() {
       const newMuteState = !this.state.muted;
       this.setState({muted: newMuteState});

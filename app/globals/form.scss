@@ -1,0 +1,55 @@
+@import './mixins.scss';
+
+input {
+  padding: 10px;
+  font-size: 28px;
+
+  border-width: 0;
+  border-bottom: 1px solid $dark-blue;
+  margin: 10px 0;
+  min-width: 360px;
+  background-color: transparent;
+
+  &::-webkit-input-placeholder {
+    //color: $dark-blue;
+  }
+}
+
+button {
+  background-color: $dark-blue;
+  padding: 20px 100px;
+  border: 0;
+  color: white;
+  font-size: 16px;
+  font-family: $font-playfair;
+  letter-spacing: 2px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 0px 3px 2px rgba(0,0,0,.2);
+
+  &:active {
+    box-shadow: none;
+  }
+  .loaderContainer {
+    opacity: 0;
+    position: absolute;
+    right: 1.5rem;
+    transition: all .3s ease;
+    @include vertical-align(absolute);
+    .loader {
+      margin-top: -22px;
+      transform: scale(.5, .5);
+    }
+  }
+  &.sending {
+    pointer-events: none;
+    cursor: not-allowed;
+    text-align:left;
+
+    .loaderContainer {
+      opacity: 1;
+    }
+
+  }
+}

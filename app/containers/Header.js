@@ -14,13 +14,17 @@ export default class Header extends Component {
             <Span className="leftContainer" columns={2}>
             </Span>
             <Span  className="centerContainer"  columns={8}>
-              <img className="logo" src="/img/globe_logo.png" />
+              <img className="logo" src="/img/directv_logo.png" />
             </Span>
             <Span className="rightContainer" columns={2} last>
-              <div className="menu"><img src="/img/icon-menu-grid.png" /></div>
+              {
+                this.props.auth ?
+                 <div onClick={this.props.onLogout} className="menu"><img src="/img/icon-menu-grid.png" /></div>
+                 : null
+              }
             </Span>
           </Grid>
-          { this.props.trailerDescription ? 
+          { this.props.trailerDescription ?
             <div className="fancy trailerName">
               <div>{this.props.trailerDescription}</div>
             </div> : null }

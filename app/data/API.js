@@ -1,6 +1,7 @@
 import $ from 'jquery';
-import auth from './auth.json';
+//import auth from './auth.json';
 import endpointData from './endpoints.json';
+import Auth from './Auth.js';
 
 /*
 *
@@ -8,20 +9,27 @@ import endpointData from './endpoints.json';
 */
 
 export default function (endpoint, params, callback)  {
-    var endpointObj = endpointData.endpoints[endpoint],
-        fullUrl,
-        postData;
+  var endpointObj = endpointData.endpoints[endpoint],
+  fullUrl,
+  postData;
 
-    if(endpointObj) {
-      fullUrl = endpointData.rootUrl + endpointObj.url;
-      postData = Object.assign(params, auth);
 
+
+  if(endpointObj) {
+    fullUrl = endpointData.rootUrl + endpointObj.url;
+    postData = params;
+
+    var doPost = function() {
       $.post({
         url: fullUrl,
         dataType: 'json',
         data: postData,
         success: function(data) {
-          callback(null, data);
+          if(data.responseStatus && data.responseStatus.errorCode) {
+            callback(data.responseStatus.errorText, data);
+          } else {
+            callback(null, data);
+          }
         },
         error: function(xhr, status, err) {
           console.error("Error calling API");
@@ -29,4 +37,17 @@ export default function (endpoint, params, callback)  {
         },
       });
     }
+
+    if(endpoint != 'login') {
+      Auth.get(function(data) {
+        console.log(data);
+        postData = Object.assign(params, data);
+        doPost();
+      })
+
+    } else {
+      doPost();
+    }
+
+  }
 }

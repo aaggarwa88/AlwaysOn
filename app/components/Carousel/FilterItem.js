@@ -16,7 +16,7 @@ const FilterItem = React.createClass({
     )
   },
 
-  componentWillReceiveProps(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     //center menu bar
     const _this = $(ReactDOM.findDOMNode(this));
     const width = $('.text', _this).width();
